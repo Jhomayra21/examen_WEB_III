@@ -22,17 +22,15 @@ namespace PrimerParcial.Data
         // pero es buena práctica para claridad, especialmente en relaciones complejas.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configura la relación uno a muchos entre Recipe e Ingredient
             modelBuilder.Entity<Ingredient>()
-                .HasOne(i => i.Recipe) // Un ingrediente tiene una receta
-                .WithMany(r => r.Ingredients) // Una receta tiene muchos ingredientes
-                .HasForeignKey(i => i.RecipeId); // Usa RecipeId como clave foránea
+                .HasOne(i => i.Recipe)        
+                .WithMany(r => r.Ingredients) 
+                .HasForeignKey(i => i.RecipeId); 
 
-            // Configura la relación uno a muchos entre Category y Recipe
             modelBuilder.Entity<Recipe>()
-                .HasOne(r => r.Category) // Una receta tiene una categoría
-                .WithMany(c => c.Recipes) // Una categoría tiene muchas recetas
-                .HasForeignKey(r => r.CategoryId); // Usa CategoryId como clave foránea
+                .HasOne(r => r.Category)     
+                .WithMany(c => c.Recipes)     
+                .HasForeignKey(r => r.CategoryId);
 
             base.OnModelCreating(modelBuilder);
         }
